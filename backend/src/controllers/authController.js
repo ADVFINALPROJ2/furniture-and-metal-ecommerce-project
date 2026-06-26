@@ -2,6 +2,13 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/db');
 
+/**
+ * Registers a new user with the specified role (buyer or seller).
+ * Validates input, hashes the password, and returns a JWT token.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const register = async (req, res) => {
   const { name, email, password, role, phone, telegram } = req.body;
   if (!name || !email || !password || !role)
@@ -25,6 +32,12 @@ const register = async (req, res) => {
   }
 };
 
+/**
+ * Authenticates a user and returns a JWT token.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const login = async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ message: 'Email and password required' });
@@ -42,6 +55,12 @@ const login = async (req, res) => {
   }
 };
 
+/**
+ * Returns the profile of the currently authenticated user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getMe = async (req, res) => {
   try {
     const result = await pool.query('SELECT id,name,email,role,phone,telegram,created_at FROM users WHERE id=$1', [req.user.id]);

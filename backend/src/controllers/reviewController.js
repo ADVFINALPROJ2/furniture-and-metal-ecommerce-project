@@ -1,6 +1,12 @@
 const pool = require('../config/db');
 
-// POST /api/reviews — buyer reviews seller after accepted order
+/**
+ * Creates a new review for a seller based on an accepted order.
+ * Ensures the order exists, belongs to the buyer, and is in 'accepted' status.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const createReview = async (req, res) => {
   const { order_id, rating, comment } = req.body;
   if (!order_id || !rating) return res.status(400).json({ message: 'order_id and rating are required' });
@@ -23,7 +29,12 @@ const createReview = async (req, res) => {
   }
 };
 
-// GET /api/reviews/seller/:sellerId
+/**
+ * Retrieves all reviews for a specific seller.
+ * @param {Object} req - The request object containing sellerId in params.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getSellerReviews = async (req, res) => {
   try {
     const result = await pool.query(`
@@ -36,7 +47,12 @@ const getSellerReviews = async (req, res) => {
   } catch (err) { res.status(500).json({ message: 'Server error' }); }
 };
 
-// GET /api/reviews/product/:productId
+/**
+ * Retrieves all reviews for a specific product.
+ * @param {Object} req - The request object containing productId in params.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getProductReviews = async (req, res) => {
   try {
     const result = await pool.query(`

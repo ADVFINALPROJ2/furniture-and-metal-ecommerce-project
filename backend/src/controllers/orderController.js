@@ -1,6 +1,12 @@
 const pool = require('../config/db');
 
-// POST /api/orders — buyer places order
+/**
+ * Places a new order for a product.
+ * Ensures the product exists and that the buyer is not the seller.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const placeOrder = async (req, res) => {
   const { product_id } = req.body;
   if (!product_id) return res.status(400).json({ message: 'product_id is required' });
@@ -16,7 +22,12 @@ const placeOrder = async (req, res) => {
   } catch (err) { console.error(err); res.status(500).json({ message: 'Server error' }); }
 };
 
-// GET /api/orders/mine — buyer sees their orders
+/**
+ * Retrieves all orders placed by the currently authenticated buyer.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getMyOrders = async (req, res) => {
   try {
     const result = await pool.query(`
@@ -33,7 +44,12 @@ const getMyOrders = async (req, res) => {
   } catch (err) { res.status(500).json({ message: 'Server error' }); }
 };
 
-// GET /api/orders/seller — seller sees incoming orders
+/**
+ * Retrieves all incoming orders for products owned by the currently authenticated seller.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getSellerOrders = async (req, res) => {
   try {
     const result = await pool.query(`
@@ -49,7 +65,13 @@ const getSellerOrders = async (req, res) => {
   } catch (err) { res.status(500).json({ message: 'Server error' }); }
 };
 
-// PATCH /api/orders/:id/status — seller accepts or rejects
+/**
+ * Updates the status of an order (accepted or rejected).
+ * Only the seller of the product can update the order status.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const updateOrderStatus = async (req, res) => {
   const { status } = req.body;
   if (!['accepted', 'rejected'].includes(status)) return res.status(400).json({ message: 'Status must be accepted or rejected' });

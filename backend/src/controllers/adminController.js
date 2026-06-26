@@ -1,6 +1,11 @@
 const pool = require('../config/db');
 
-// GET /api/admin/users
+/**
+ * Retrieves all registered users from the database, excluding administrators.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getAllUsers = async (req, res) => {
   try {
     const result = await pool.query(
@@ -10,7 +15,12 @@ const getAllUsers = async (req, res) => {
   } catch (err) { res.status(500).json({ message: 'Server error' }); }
 };
 
-// PATCH /api/admin/users/:id/status — ban or reactivate
+/**
+ * Updates a user's active status (ban or reactivate).
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const setUserStatus = async (req, res) => {
   const { is_active } = req.body;
   try {
@@ -19,7 +29,13 @@ const setUserStatus = async (req, res) => {
   } catch (err) { res.status(500).json({ message: 'Server error' }); }
 };
 
-// GET /api/admin/stats
+/**
+ * Retrieves aggregate statistics for administrators, including total users, products, orders, and reviews,
+ * along with the 10 most recent orders.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getStats = async (req, res) => {
   try {
     const [users, products, orders, reviews] = await Promise.all([

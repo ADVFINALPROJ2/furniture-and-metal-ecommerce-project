@@ -1,6 +1,11 @@
 const pool = require('../config/db');
 
-// GET /api/products — browse all, search, filter
+/**
+ * Retrieves a list of active products based on search, category, and price filters.
+ * @param {Object} req - The request object containing query parameters.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getProducts = async (req, res) => {
   const { search, category, minPrice, maxPrice } = req.query;
   let query = `
@@ -48,7 +53,12 @@ const getProducts = async (req, res) => {
   }
 };
 
-// GET /api/products/:id
+/**
+ * Retrieves a single product by its ID, including seller information and ratings.
+ * @param {Object} req - The request object containing product ID in params.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getProduct = async (req, res) => {
   try {
     const result = await pool.query(`
@@ -76,7 +86,12 @@ const getProduct = async (req, res) => {
   }
 };
 
-// POST /api/products — seller only
+/**
+ * Creates a new product. (Seller only)
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const createProduct = async (req, res) => {
   const { name, description, price, category } = req.body;
   if (!name || !price || !category) return res.status(400).json({ message: 'Name, price and category are required' });
@@ -93,7 +108,12 @@ const createProduct = async (req, res) => {
   }
 };
 
-// PUT /api/products/:id — seller only
+/**
+ * Updates an existing product. (Seller only)
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const updateProduct = async (req, res) => {
   const { name, description, price, category } = req.body;
   try {
@@ -110,7 +130,12 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// DELETE /api/products/:id — seller only
+/**
+ * Soft deletes a product by setting is_active to FALSE. (Seller only)
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const deleteProduct = async (req, res) => {
   try {
     const check = await pool.query('SELECT id FROM products WHERE id=$1 AND seller_id=$2', [req.params.id, req.user.id]);
@@ -122,7 +147,12 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-// GET /api/products/seller/mine
+/**
+ * Retrieves all active products owned by the currently authenticated seller.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>}
+ */
 const getMyProducts = async (req, res) => {
   try {
     const result = await pool.query(
