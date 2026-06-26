@@ -5,6 +5,8 @@ const { authenticate, requireRole } = require('../middleware/auth');
 const { register, login, getMe } = require('../controllers/authController');
 const { getProducts, getProduct, createProduct, updateProduct, deleteProduct, getMyProducts } = require('../controllers/productController');
 const { placeOrder, getMyOrders, getSellerOrders, updateOrderStatus } = require('../controllers/orderController');
+const { createReview, getSellerReviews, getProductReviews } = require('../controllers/reviewController');
+const { getAllUsers, setUserStatus, getStats } = require('../controllers/adminController');
 
 const router = express.Router();
 
@@ -29,5 +31,13 @@ router.post('/orders', authenticate, requireRole('buyer'), placeOrder);
 router.get('/orders/mine', authenticate, requireRole('buyer'), getMyOrders);
 router.get('/orders/seller', authenticate, requireRole('seller'), getSellerOrders);
 router.patch('/orders/:id/status', authenticate, requireRole('seller'), updateOrderStatus);
+
+router.post('/reviews', authenticate, requireRole('buyer'), createReview);
+router.get('/reviews/seller/:sellerId', getSellerReviews);
+router.get('/reviews/product/:productId', getProductReviews);
+
+router.get('/admin/users', authenticate, requireRole('admin'), getAllUsers);
+router.patch('/admin/users/:id/status', authenticate, requireRole('admin'), setUserStatus);
+router.get('/admin/stats', authenticate, requireRole('admin'), getStats);
 
 module.exports = router;
