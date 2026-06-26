@@ -4,6 +4,8 @@ import api from '../utils/api';
 import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
+// Product create/edit form — sellers use this to add new listings or update existing ones.
+// Supports image upload and pre-fills form fields in edit mode.
 const CATEGORIES = ['Furniture', 'Metalwork', 'Office Furniture', 'Custom Orders', 'Decor', 'Other'];
 
 const ProductForm = () => {

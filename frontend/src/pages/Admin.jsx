@@ -4,6 +4,7 @@ import api from '../utils/api';
 import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
+// Admin dashboard — platform overview with stats, recent orders, and user management (ban/reactivate).
 const Admin = () => {
   const { user } = useAuth();
   const navigate = useNavigate();

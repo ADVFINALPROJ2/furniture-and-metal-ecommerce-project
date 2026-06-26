@@ -12,6 +12,8 @@ import MyOrders from './pages/MyOrders';
 import Admin from './pages/Admin';
 import './index.css';
 
+// Route guard that redirects unauthenticated users to login
+// and enforces role-based access (buyer, seller, admin).
 const ProtectedRoute = ({ children, role }) => {
   const { user, loading } = useAuth();
   if (loading) return <div className="loading">Loading...</div>;

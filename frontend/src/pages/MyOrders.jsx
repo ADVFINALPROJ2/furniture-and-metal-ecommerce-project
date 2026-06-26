@@ -5,6 +5,7 @@ import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { StarRating } from '../components/shared/ProductCard';
 
+// ReviewModal — popup for buyers to rate and comment on an accepted order.
 const ReviewModal = ({ order, onClose, onDone }) => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState('');
@@ -45,6 +46,7 @@ const ReviewModal = ({ order, onClose, onDone }) => {
   );
 };
 
+// My Orders page — lists buyer's placed orders with status badges and the option to leave reviews.
 const MyOrders = () => {
   const { user } = useAuth();
   const navigate = useNavigate();

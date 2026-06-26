@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
+// Sticky top navigation — shows different links depending on user role (guest, buyer, seller, admin).
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();

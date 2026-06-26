@@ -4,6 +4,8 @@ import api from '../utils/api';
 import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
+// Login page — authenticates user via POST /api/auth/login, stores JWT via AuthContext,
+// then redirects based on role (buyer → home, seller → dashboard, admin → admin panel).
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();

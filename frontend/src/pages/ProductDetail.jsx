@@ -5,6 +5,8 @@ import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { StarRating } from '../components/shared/ProductCard';
 
+// Product detail page — shows full product info, seller contact details, buyer reviews,
+// and a "Place Order" button for logged-in buyers.
 const ProductDetail = () => {
   const { id } = useParams();
   const { user } = useAuth();
@@ -49,7 +51,6 @@ const ProductDetail = () => {
 
   const imageUrl = imgUrl(product.image_url, 'https://via.placeholder.com/600x400?text=No+Image');
 
-  // Fix bug 2: if no reviews yet show no stars, not 2 stars
   const hasRating = product.review_count > 0;
 
   return (

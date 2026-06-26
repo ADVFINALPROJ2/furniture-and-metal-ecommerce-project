@@ -2,6 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import api from '../utils/api';
 
+// Global auth context — stores user session, persists token in localStorage, and
+// provides login/logout helpers to every component in the tree.
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -9,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
 
+  // Attaches or removes the JWT Bearer header on both axios instances.
   const setAuthHeader = (t) => {
     if (t) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${t}`;
@@ -19,6 +22,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // On mount or token change, verify the session by calling GET /api/auth/me.
   useEffect(() => {
     if (token) {
       setAuthHeader(token);
@@ -35,6 +39,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
+  // Saves token + user data after a successful login or registration.
   const login = (newToken, userData) => {
     localStorage.setItem('token', newToken);
     setAuthHeader(newToken);
@@ -42,6 +47,7 @@ export const AuthProvider = ({ children }) => {
     setUser(userData);
   };
 
+  // Clears everything on logout.
   const logout = () => {
     localStorage.removeItem('token');
     setAuthHeader(null);
@@ -56,4 +62,5 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+// Convenience hook so any component can access auth state without importing Context.
 export const useAuth = () => useContext(AuthContext);

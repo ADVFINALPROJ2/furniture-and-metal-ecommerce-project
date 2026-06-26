@@ -3,6 +3,8 @@ import api from '../utils/api';
 import { imgUrl } from '../utils/api';
 import ProductCard from '../components/shared/ProductCard';
 
+// Landing page — hero banner, search bar, category/price filters, and product grid.
+// Products are fetched from the backend with optional query params for search and filter.
 const CATEGORIES = ['All', 'Furniture', 'Metalwork', 'Office Furniture', 'Custom Orders', 'Decor', 'Other'];
 
 const Home = () => {

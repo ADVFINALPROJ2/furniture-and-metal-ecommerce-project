@@ -4,6 +4,9 @@ import api from '../utils/api';
 import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
+// Registration page — allows users to sign up as buyer or seller.
+// Sellers must provide phone and Telegram for buyer contact.
+// On success, logs the user in and redirects based on role.
 const Register = () => {
   const { login } = useAuth();
   const navigate = useNavigate();

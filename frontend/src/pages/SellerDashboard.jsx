@@ -4,6 +4,8 @@ import api from '../utils/api';
 import { imgUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 
+// Seller dashboard — central hub for sellers to manage their products and incoming orders.
+// Features a tab switcher between "My Products" (with edit/delete) and "Orders" (accept/reject).
 const SellerDashboard = () => {
   const { user } = useAuth();
   const navigate = useNavigate();

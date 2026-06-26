@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { imgUrl } from '../../utils/api';
 
+// Reusable 5-star rating display used in product cards and order reviews.
 const StarRating = ({ rating }) => {
   const stars = Math.round(Number(rating));
   return (
@@ -13,6 +14,7 @@ const StarRating = ({ rating }) => {
   );
 };
 
+// Product card component — renders a single product in grid layouts with image, name, price and rating.
 const ProductCard = ({ product }) => {
   const imageUrl = imgUrl(product.image_url);
   const hasRating = Number(product.review_count) > 0;
