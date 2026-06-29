@@ -6,6 +6,13 @@ A full-stack web marketplace connecting local furniture makers and metalworkers 
 **Course:** SWEN224 — BITS College · 2026
 
 ---
+## Deployment
+https://furniture-and-metal-ecommerce-proje.vercel.app/
+
+link for the deployed website 
+vercel for frontend 
+render for backend 
+cloudnary for database image store 
 
 ## Tech Stack
 
@@ -38,50 +45,7 @@ furniture-marketplace/
         ├── pages/              # All page components
         ├── utils/              # api.js — axios instance + imgUrl helper
         └── App.jsx             # Routes and protected route wrapper
-```
 
----
-
-## Local Setup
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/ADVFINALPROJ2/furniture-marketplace.git
-cd furniture-marketplace
-```
-
-### 2. Set up PostgreSQL database
-```bash
-# Create the database
-psql -U postgres -c "CREATE DATABASE furniture_marketplace;"
-
-# Run the schema (creates all tables + seeds admin user)
-psql -U postgres -d furniture_marketplace -f backend/src/config/schema.sql
-```
-
-### 3. Configure the backend
-```bash
-cd backend
-npm install
-cp .env.example .env
-# Open .env and set your PostgreSQL password and a JWT secret
-```
-
-
-
-### 4. Start the backend
-```bash
-npm run dev
-# Server runs on http://localhost:5000
-```
-
-### 5. Start the frontend
-```bash
-cd ../frontend
-npm install
-npm start
-# App opens at http://localhost:3000
-```
 
 ## API Endpoints
 
@@ -108,8 +72,3 @@ npm start
 
 ---
 
-## Deployment
-
-- **Frontend:** Vercel (set `REACT_APP_API_URL` environment variable)
-- **Backend:** Render Web Service (set all `.env` variables in dashboard)
-- **Database:** Render PostgreSQL (free tier)
