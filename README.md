@@ -55,6 +55,23 @@ specifically for furniture and metalworks.
 
 ---
 
+## Architecture
+
+The backend follows a **Route-Controller (MVC-light)** pattern. No ORM is used — raw parameterized SQL is executed via `pg.Pool`.
+
+```
+Request → Routes (routes/index.js) → Middleware (auth, multer) → Controllers → PostgreSQL
+```
+
+- **Routes** — Central router mapping every endpoint to its controller with per-route middleware.
+- **Middleware** — JWT verification (`authenticate`) and role-based guards (`requireRole`).
+- **Controllers** — Handle validation, business logic, and database queries directly.
+- **Data Access** — Raw SQL via `pg.Pool` from `config/db.js`.
+
+The frontend uses a **component-based** React architecture with `AuthContext` for global user state, shared components (`Navbar`, `ProductCard`), page-level components, and an `api.js` utility for Axios calls.
+
+---
+
 ## Project Structure
 ```
 furniture-and-metal-ecommerce-project/
