@@ -8,7 +8,6 @@ A full-stack web marketplace connecting local furniture makers and metalworkers 
 ---
 ## Deployment
 https://furniture-and-metal-ecommerce-proje.vercel.app/
-
 link for the deployed website 
 vercel for frontend 
 render for backend 
