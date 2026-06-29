@@ -56,6 +56,7 @@ specifically for furniture and metalworks.
 
 ## Project Structure
 furniture-and-metal-ecommerce-project/
+
 ├── backend/
 │   ├── src/
 │   │   ├── config/
