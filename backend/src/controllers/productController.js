@@ -120,7 +120,7 @@ const updateProduct = async (req, res) => {
   try {
     const check = await pool.query('SELECT * FROM products WHERE id=$1 AND seller_id=$2', [req.params.id, req.user.id]);
     if (!check.rows.length) return res.status(404).json({ message: 'Product not found or not yours' });
-    const image_url = req.file ? `/uploads/${req.file.filename}` : check.rows[0].image_url;
+    const image_url = req.file ? req.file.path : check.rows[0].image_url;
     const result = await pool.query(
       'UPDATE products SET name=$1,description=$2,price=$3,category=$4,image_url=$5 WHERE id=$6 RETURNING *',
       [name || check.rows[0].name, description || check.rows[0].description, price || check.rows[0].price, category || check.rows[0].category, image_url, req.params.id]
