@@ -55,8 +55,8 @@ specifically for furniture and metalworks.
 ---
 
 ## Project Structure
+```
 furniture-and-metal-ecommerce-project/
-
 ├── backend/
 │   ├── src/
 │   │   ├── config/
@@ -75,9 +75,7 @@ furniture-and-metal-ecommerce-project/
 │   ├── uploads/
 │   │   └── .gitkeep
 │   ├── .env.example
-│   ├── package.json
-│   └── src/
-│       └── index.js
+│   └── package.json
 ├── frontend/
 │   ├── public/
 │   │   └── index.html
@@ -104,7 +102,7 @@ furniture-and-metal-ecommerce-project/
 │       └── index.js
 ├── .gitignore
 └── README.md
-
+```
 ## API Endpoints
 
 | Method | Endpoint | Auth | Description |
