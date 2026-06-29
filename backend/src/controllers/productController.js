@@ -95,7 +95,8 @@ const getProduct = async (req, res) => {
 const createProduct = async (req, res) => {
   const { name, description, price, category } = req.body;
   if (!name || !price || !category) return res.status(400).json({ message: 'Name, price and category are required' });
-  const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+
+const image_url = req.file ? req.file.path : null;
   try {
     const result = await pool.query(
       'INSERT INTO products (seller_id,name,description,price,category,image_url) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *',
