@@ -1,4 +1,4 @@
-#  Selam Market — Furniture & Metalworks Marketplace
+# Selam Market — Furniture & Metalworks Marketplace
 
 A full-stack web marketplace connecting local furniture makers and metalworkers in Addis Ababa with buyers.
 
@@ -6,12 +6,12 @@ A full-stack web marketplace connecting local furniture makers and metalworkers 
 **Course:** SWEN224 — BITS College · 2026
 
 ---
+
 ## Deployment
-https://furniture-and-metal-ecommerce-proje.vercel.app/
-link for the deployed website 
-vercel for frontend,
-render for backend, 
-cloudnary for database image store 
+
+**Live:** [furniture-and-metal-ecommerce-proje.vercel.app](https://furniture-and-metal-ecommerce-proje.vercel.app/)  
+Frontend on Vercel, backend on Render, images on Cloudinary.
+
 ## Project Description
 
 Selam Market is a full-stack web marketplace built to connect local furniture makers 
@@ -43,6 +43,7 @@ specifically for furniture and metalworks.
 - **Admin dashboard** — Monitor platform activity, manage users, ban rule violators
 - **Persistent image uploads** — Product images stored on Cloudinary for permanent availability
 - **Responsive design** — Works on mobile and slow 3G/4G connections
+
 ## Tech Stack
 
 | Layer | Technology |
@@ -103,13 +104,16 @@ furniture-and-metal-ecommerce-project/
 ├── .gitignore
 └── README.md
 ```
+
+---
+
 ## API Endpoints
 
 | Method | Endpoint | Auth | Description |
 |--------|----------|------|-------------|
 | POST | /api/auth/register | — | Register as buyer or seller |
 | POST | /api/auth/login | — | Login |
-| GET | /api/auth/me |  | Get current user |
+| GET | /api/auth/me | ✓ | Get current user |
 | GET | /api/products | — | Browse / search / filter |
 | GET | /api/products/:id | — | Product detail |
 | POST | /api/products | Seller | Add product |
