@@ -42,6 +42,7 @@ specifically for furniture and metalworks.
 - **Review system** — Buyers rate and review sellers after accepted orders
 - **Persistent image uploads** — Product images stored on Cloudinary for permanent availability
 - **Responsive design** — Works on mobile and slow 3G/4G connections
+- **Admin dashboard** - Used ban and watch the users activities and take action when needed 
 
 ## Tech Stack
 
