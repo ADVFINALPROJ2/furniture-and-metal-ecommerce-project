@@ -40,7 +40,6 @@ specifically for furniture and metalworks.
 - **Search and filter** — Buyers can search by keyword and filter by category and price range
 - **Order system** — Buyers place orders, sellers accept or reject them, buyers track status
 - **Review system** — Buyers rate and review sellers after accepted orders
-- **Admin dashboard** — Monitor platform activity, manage users, ban rule violators
 - **Persistent image uploads** — Product images stored on Cloudinary for permanent availability
 - **Responsive design** — Works on mobile and slow 3G/4G connections
 
